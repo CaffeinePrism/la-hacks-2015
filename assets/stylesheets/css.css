@@ -1,0 +1,27 @@
+body{
+  background-color:black;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+}
+.top{
+  background-color:black;
+}
+.middle{
+  background-color:white;
+}
+.grid-50{
+  margin:auto;
+}
+.button{
+  background-color:white;
+  color:black;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 2px solid white;
+}
+a{
+  text-decoration:none;
+  color:black;
+}
