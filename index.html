@@ -23,22 +23,39 @@
        }
     }
 
+    function close_all() {
+       var e = document.getElementById('logo');
+       var avail = ['play', 'graph', 'about']
+
+       for(var i=0; i < avail.length; i++){
+         var doc =  document.getElementById(avail[i])
+         if(doc.style.display == 'block'){
+           doc.style.display = 'none';
+         }
+        }
+
+       if(e.style.display == 'none'){
+         e.style.display = 'block';
+       }
+    }
+
+
   //-->
   </script>
 
   <div id="play" style="display: none;">
-    <img src="./assets/images/logo.png" width='100px' height="100px">
+    <a class="btn2" href="#" onclick="close_all()">x</a>
   </div>
 
   <div id="graph" style="display: none;">
-    <img src="./assets/images/logo.png" width='100px' height="100px">
+    <a class="btn2" href="#" onclick="close_all()">x</a>
   </div>
 
   <div id="about" style="display: none;">
-    <img src="./assets/images/logo.png" width='100px' height="100px">
+    <a class="btn2" href="#" onclick="close_all()">x</a>
   </div>
 
-  <img src="./assets/images/logo.png" text-align="center" id="logo" style="display: block; margin: auto;">
+  <div id="logo" style="display: block;"></div>
   <br />
 
   <a class="btn" href="#" onclick="toggle_visibility('play')">play!</a>
