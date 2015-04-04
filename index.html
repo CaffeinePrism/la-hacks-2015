@@ -1,9 +1,49 @@
 <html>
 <head>
-  <title>Hello</title>
+  <title>thrust!</title>
   <link rel="stylesheet" type="text/css" href="./assets/stylesheets/css.css">
 </head>
 <body>
-  hello
+
+  <script type="text/javascript">
+  <!--
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       var avail = ['logo', 'play', 'graph', 'about']
+
+       for(var i=0; i < avail.length; i++){
+         var doc =  document.getElementById(avail[i])
+         if(doc.style.display == 'block'){
+           doc.style.display = 'none';
+         }
+        }
+
+       if(e.style.display == 'none'){
+         e.style.display = 'block';
+       }
+    }
+
+  //-->
+  </script>
+
+  <div id="play" style="display: none;">
+    <img src="./assets/images/logo.png" width='100px' height="100px">
+  </div>
+
+  <div id="graph" style="display: none;">
+    <img src="./assets/images/logo.png" width='100px' height="100px">
+  </div>
+
+  <div id="about" style="display: none;">
+    <img src="./assets/images/logo.png" width='100px' height="100px">
+  </div>
+
+  <img src="./assets/images/logo.png" text-align="center" id="logo" style="display: block; margin: auto;">
+  <br />
+
+  <a class="btn" href="#" onclick="toggle_visibility('play')">play!</a>
+  <a class="btn" href="#" onclick="toggle_visibility('graph')">graph!</a>
+  <a class="btn" href="#" onclick="toggle_visibility('about')">about!</a>
+
 </body>
 </html>
