@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>thrust!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="assets/stylesheets/main.css">
+  <script src="assets/js/paper-full.min.js"></script>
+  <script type="text/paperscript" src="assets/js/paperscript.js" canvas="canvas"></script>
+  <script src="http://connect.soundcloud.com/sdk.js"></script>
+  <script src="assets/js/waveform.js"></script>
+  <script>
+    var e_stream;
+    var waveform;
+
+    SC.initialize({
+      client_id: "68bace24b2e7826817a2924f718d7cdd"
+    });
+
+    SC.get("/tracks?genre=hip+hop+&+rap", {limit: 5}, function(tracks){
+      var track = tracks[Math.floor(Math.random()*tracks.length)];
+      document.getElementById('songname').innerHTML = track.title;
+      waveform = new Waveform({
+        container: document.getElementById("waveform"),
+        innerColor: "#fff"
+      });
+      waveform.dataFromSoundCloudTrack(track);
+      console.log(waveform);
+      var streamOptions = waveform.optionsForSyncedStream();
+      SC.stream(track.uri, streamOptions, function(stream){
+        e_stream = stream;
+        stream.play();
+      });
+    });
+    window.addEventListener("devicemotion",onDeviceMotion,false);
+    window.addEventListener("touchend", onTouchUp, false);
+
+    function onTouchUp(event) {
+      e_stream.play();
+    }
+    var score = 0;
+    function onDeviceMotion(event) {
+      var points = document.getElementById('points');
+      var accel = event.acceleration;
+      //doc.innerHTML = 'accel: ' + JSON.stringify(accel) + '\naccelwithg:' + JSON.stringify(accelwithg) + '\n';
+      //console.log('accel:', accel, 'accelwithg:', accelwithg);
+      var x = Math.abs(accel.x);
+      var y = Math.abs(accel.y);
+      var z = Math.abs(accel.z);
+      var sum = x + y + z;
+      var waveform_val = waveform.data[Math.floor(e_stream.position / e_stream.durationEstimate * waveform.data.length)];
+      if(sum/65 > waveform_val) {
+        score += Math.floor(sum);
+        points.innerHTML = score;
+        //console.log('point! waveform_val:', waveform_val, "raw:", sum, " sum:", sum/65);
+      }
+    }
+  </script>
+
+</head>
+<body>
+  <pre id="points">0</pre>
+  <canvas id="canvas" data-paper-keepalive="true" data-paper-resize="true"></canvas>
+  <div id="waveform"><pre id="songname"></pre></div>
+</body>
+</html>

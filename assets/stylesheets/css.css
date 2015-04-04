@@ -36,7 +36,7 @@ body{
   color:#bababa;
   text-decoration: none;
 }
-div{
+body > div{
   display:block;
   min-width:1000px;
   max-width:1000px;
@@ -47,4 +47,28 @@ div{
   background-image:url("../images/logo.png");
   background-repeat:no-repeat;
   background-position:center;
+}
+#spinner {
+  height: 400px;
+  -webkit-animation: rotateTriangle 1.5s linear infinite;
+  transition: scale 1s;
+}
+#spinner:after{
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  margin-top:-141.667px;
+  margin-left:-125px;
+  top:50%;
+	left:50%;
+  border-style: solid;
+  border-width: 0 125px 216.5px 125px;
+  border-color: transparent transparent #ad21c6 transparent;
+}
+
+@-webkit-keyframes rotateTriangle {
+  0% {transform:rotate(0deg);}
+  50% {transform:rotate(180deg);}
+  100% {transform:rotate(360deg);}
 }

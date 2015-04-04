@@ -39,13 +39,36 @@
        }
     }
 
+    document.addEventListener('DOMContentLoaded', everything, false);
+    var triangle;
+    function everything() {
+      window.addEventListener("devicemotion",onDeviceMotion,false);
 
+      triangle = document.getElementById('spinner');
+    }
+
+    function onDeviceMotion(event) {
+      var scale = 'scale(0.5)'
+      var accel = event.acceleration;
+      //doc.innerHTML = 'accel: ' + JSON.stringify(accel) + '\naccelwithg:' + JSON.stringify(accelwithg) + '\n';
+      //console.log('accel:', accel, 'accelwithg:', accelwithg);
+      var x = Math.abs(accel.x);
+      var y = Math.abs(accel.y);
+      var z = Math.abs(accel.z);
+      var sum = x + y + z;
+
+      if (sum > 20) {
+        scale = 'scale(1.5)';
+      }
+      triangle.style.transform = scale;
+    }
   //-->
   </script>
 
-  <div id="play" style="display: none;">
+  <div id="play" style="display: block;">
     <a class="btn2" href="#" onclick="close_all()">x</a>
-  </div>
+    <div id="spinner"></div>
+    </div>
 
   <div id="graph" style="display: none;">
     <a class="btn2" href="#" onclick="close_all()">x</a>
@@ -55,7 +78,7 @@
     <a class="btn2" href="#" onclick="close_all()">x</a>
   </div>
 
-  <div id="logo" style="display: block;"></div>
+  <div id="logo" style="display: none;"></div>
   <br />
 
   <a class="btn" href="#" onclick="toggle_visibility('play')">play!</a>

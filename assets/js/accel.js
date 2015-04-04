@@ -18,7 +18,6 @@ function everything(event) {
       .step(500)
       .size(360);
 
-  horizon = context.horizon();
   var foo = retData('foo');
   d3.select("#data").call(function (div) {
     div.datum(foo);
@@ -41,6 +40,7 @@ function everything(event) {
   });
 
   window.addEventListener("devicemotion",onDeviceMotion,false);
+
 }
 
 function onDeviceMotion(event) {
