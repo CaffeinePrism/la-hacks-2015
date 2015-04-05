@@ -38,7 +38,7 @@ function initializePath() {
 }
 
 function onFrame(event) {
-    triangle.rotate(2);
+    triangle.rotate(6);
     if (scale) {
       triangle.scale(0.7);
       if (triangle.length <= o_length) {
@@ -76,24 +76,25 @@ function onFrame(event) {
 
 function keepInView(item) {
 	var position = item.position;
+  var t_pos = triangle.position;
 	var viewBounds = view.bounds;
 	if (position.isInside(viewBounds))
 		return;
 	var itemBounds = item.bounds;
 	if (position.x > viewBounds.width + 5) {
-		position.x = view.center.x;
+		position.x = t_pos.x;
 	}
 
 	if (position.x < -itemBounds.width - 5) {
-		position.x = view.center.x;
+		position.x = t_pos.x;
 	}
 
 	if (position.y > viewBounds.height + 5) {
-		position.y = view.center.y;
+		position.y = t_pos.y;
 	}
 
 	if (position.y < -itemBounds.height - 5) {
-		position.y = view.center.y;
+		position.y = t_pos.y;
 	}
 }
 

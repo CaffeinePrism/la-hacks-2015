@@ -26,7 +26,8 @@
       waveform.dataFromSoundCloudTrack(track);
       console.log(waveform);
       var streamOptions = waveform.optionsForSyncedStream();
-      SC.stream(track.uri, streamOptions, function(stream){
+      SC.stream(track.uri, streamOptions, function(stream) {
+        console.log(stream);
         e_stream = stream;
         stream.play();
       });
@@ -35,7 +36,9 @@
     window.addEventListener("touchend", onTouchUp, false);
 
     function onTouchUp(event) {
-      e_stream.play();
+      if (e_stream.position == 0) {
+        e_stream.togglePause();
+      }
     }
     var score = 0;
     function onDeviceMotion(event) {
@@ -48,7 +51,7 @@
       var z = Math.abs(accel.z);
       var sum = x + y + z;
       var waveform_val = waveform.data[Math.floor(e_stream.position / e_stream.durationEstimate * waveform.data.length)];
-      if(sum/65 > waveform_val) {
+      if(sum/65 > waveform_val & e_stream.playState == 1) {
         score += Math.floor(sum);
         points.innerHTML = score;
         //console.log('point! waveform_val:', waveform_val, "raw:", sum, " sum:", sum/65);
