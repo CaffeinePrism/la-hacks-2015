@@ -39,6 +39,7 @@ function initializePath() {
 
 function onFrame(event) {
     triangle.rotate(6);
+    keepInView(triangle);
     if (scale) {
       triangle.scale(0.7);
       if (triangle.length <= o_length) {
