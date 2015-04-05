@@ -48,15 +48,12 @@
       }
     }
     var score = 0;
-    var last_accel;
     function onDeviceMotion(event) {
       var points = document.getElementById('points');
       var accel = event.acceleration;
-      if (!device_ok & last_accel != null & last_accel != accel) {
+      if (!device_ok & accel.x != null) {
         document.getElementById('overlay').remove();
         device_ok = true;
-      } else {
-        last_accel = accel;
       }
       //doc.innerHTML = 'accel: ' + JSON.stringify(accel) + '\naccelwithg:' + JSON.stringify(accelwithg) + '\n';
       //console.log('accel:', accel, 'accelwithg:', accelwithg);
@@ -79,7 +76,8 @@
 <body>
   <div id="overlay">
     <h1>oh noes :(</h1>
-    This was designed for mobile devices with accelerometer support. No accelerometer data was detected.
+    This was designed for mobile devices with accelerometer support.<br><br>
+    No accelerometer data was detected.
   </div>
   <pre id="points">0</pre>
   <canvas id="canvas" data-paper-keepalive="true" data-paper-resize="true"></canvas>
