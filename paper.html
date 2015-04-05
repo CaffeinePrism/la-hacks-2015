@@ -16,7 +16,7 @@
       client_id: "68bace24b2e7826817a2924f718d7cdd"
     });
 
-    SC.get("/tracks?genre=hip+hop+&+rap", {limit: 5}, function(tracks){
+    SC.get("/playlists/42464272/tracks", {limit: 5}, function(tracks){
       var track = tracks[Math.floor(Math.random()*tracks.length)];
       document.getElementById('songname').innerHTML = track.title;
       waveform = new Waveform({
